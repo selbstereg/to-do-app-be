@@ -17,7 +17,7 @@ public class TodoList extends NamedEntity {
         this.name = name;
     }
 
-    public void addTodo(Todo todo) {
+    public void add(Todo todo) {
         this.todos.add(todo);
     }
 

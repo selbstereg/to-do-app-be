@@ -25,7 +25,7 @@ public class DataPopulator {
     public void onApplicationEvent(ContextRefreshedEvent event) {
 		Todo todo = new Todo("the todo", 0);
 		TodoList todoList = new TodoList("todo-list");
-		todoList.addTodo(todo);
+		todoList.add(todo);
 		todoListRepo.save(todoList);
     }
 	
