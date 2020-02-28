@@ -1,8 +1,7 @@
 package todoapp.todos.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+public interface NamedEntity {
 
-public class NamedEntity {
-    protected String name;
+    public Long getId();
+    public String getName();
 }

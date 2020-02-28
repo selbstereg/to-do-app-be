@@ -1,12 +1,10 @@
 package todoapp.todos.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import todoapp.todos.model.TodoList;
 
 import java.util.List;
 
-public interface TodoListRepo extends CrudRepository<TodoList, Long> {
-
-    public List<TodoList> findAll();
+public interface TodoListRepo extends JpaRepository<TodoList, Long> {
 
 }
