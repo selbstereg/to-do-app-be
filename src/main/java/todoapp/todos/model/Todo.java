@@ -3,14 +3,15 @@ package todoapp.todos.model;
 import javax.persistence.*;
 
 @Entity
-public class Todo {
+public class Todo extends NamedEntity {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String title;
-	
-	public Todo(String title) {
-		this.title = title;
+	private int priority;
+
+	public Todo(String name, int priority) {
+		this.name = name;
+		this.priority = priority;
 	}
 }

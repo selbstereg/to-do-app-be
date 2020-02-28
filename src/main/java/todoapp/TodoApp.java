@@ -12,7 +12,7 @@ public class TodoApp {
 	public static void main(String[] args) {
 		SpringApplication.run(TodoApp.class, args);
 	}
-	
+
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
@@ -20,9 +20,9 @@ public class TodoApp {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry
-				.addMapping("/api/**")
-				.allowedOrigins("http://localhost:4200", "https://selbstereg.github.io")
-	            .allowedMethods("GET", "POST", "PUT", "DELETE");
+						.addMapping("/api/**")
+						.allowedOrigins("http://localhost:4200", "https://selbstereg.github.io")
+						.allowedMethods("GET", "POST", "PUT", "DELETE");
 			}
 		};
 	}
