@@ -1,11 +1,12 @@
 package todoapp.todos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import todoapp.todos.model.TodoList;
 import todoapp.todos.service.TodoListService;
+import todoapp.todos.service.exceptions.TodoListNotFoundException;
 
 import java.util.List;
 
@@ -25,6 +26,16 @@ public class TodoListController {
     @GetMapping()
     public List<TodoList> getTodoLists() {
         return todoListService.getTodoLists();
+    }
+
+    @GetMapping(path = "/{id}")
+    public TodoList getTodoList(@PathVariable Long id) throws TodoListNotFoundException {
+        return todoListService.getTodoList(id);
+    }
+
+    @ExceptionHandler(TodoListNotFoundException.class)
+    public ResponseEntity<String> handle(TodoListNotFoundException exception) {
+        return new ResponseEntity<String>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }

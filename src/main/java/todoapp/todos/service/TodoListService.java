@@ -24,16 +24,20 @@ public class TodoListService {
         return todoListRepo.save(todoList);
     }
 
-    public TodoList addTodo(Long todoListId, Todo todo) throws TodoListNotFoundException {
-        TodoList todoList = todoListRepo.findById(todoListId).orElseThrow(
-                () -> new TodoListNotFoundException(todoListId)
-        );
-        todoList.add(todo);
-        return todoListRepo.save(todoList);
-    }
-
     public List<TodoList> getTodoLists() {
         return todoListRepo.findAll();
     }
 
+    public TodoList getTodoList(Long id) throws TodoListNotFoundException {
+        TodoList todoList = todoListRepo.findById(id).orElseThrow(
+                () -> new TodoListNotFoundException(id)
+        );
+        return  todoList;
+    }
+
+    public TodoList addTodo(Long todoListId, Todo todo) throws TodoListNotFoundException {
+        TodoList todoList = getTodoList(todoListId);
+        todoList.add(todo);
+        return todoListRepo.save(todoList);
+    }
 }
