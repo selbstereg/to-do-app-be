@@ -13,7 +13,6 @@ public class TodoApp {
 		SpringApplication.run(TodoApp.class, args);
 	}
 
-
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

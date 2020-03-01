@@ -23,9 +23,13 @@ public class DataPopulator {
 	
 	@EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
-		Todo todo = new Todo("the todo", 0);
+		Todo todo1 = new Todo("todo1", 0);
+		Todo todo2 = new Todo("todo2", 2);
+		Todo todo3 = new Todo("todo3", 1);
 		TodoList todoList = new TodoList("todo-list");
-		todoList.add(todo);
+		todoList.add(todo1);
+		todoList.add(todo2);
+		todoList.add(todo3);
 		todoListRepo.save(todoList);
     }
 	

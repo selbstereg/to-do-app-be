@@ -6,16 +6,17 @@ import todoapp.todos.model.Todo;
 import todoapp.todos.model.TodoList;
 import todoapp.todos.repo.TodoListRepo;
 import todoapp.todos.service.exceptions.TodoListNotFoundException;
+import todoapp.todos.service.exceptions.TodoNotFoundException;
 
 import java.util.List;
 
 @Component
-public class TodoListService {
+public class TodoListCrudServiceImpl implements TodoListCrudService {
 
     private final TodoListRepo todoListRepo;
 
     @Autowired
-    public TodoListService(TodoListRepo todoListRepo) {
+    public TodoListCrudServiceImpl(TodoListRepo todoListRepo) {
         this.todoListRepo = todoListRepo;
     }
 
@@ -35,9 +36,22 @@ public class TodoListService {
         return  todoList;
     }
 
-    public TodoList addTodo(Long todoListId, Todo todo) throws TodoListNotFoundException {
+    public Todo addTodo(Long todoListId, Todo todo) throws TodoListNotFoundException {
         TodoList todoList = getTodoList(todoListId);
         todoList.add(todo);
-        return todoListRepo.save(todoList);
+        todoListRepo.save(todoList);
+        return todo;
+    }
+
+    public List<Todo> getTodos(Long toDoListId) throws TodoListNotFoundException {
+        TodoList todoList = getTodoList(toDoListId);
+        return todoList.getTodosSortedByPriority();
+    }
+
+    public Todo deleteTodo(Long toDoListId, Long toDoId) throws TodoListNotFoundException, TodoNotFoundException {
+        TodoList todoList = getTodoList(toDoListId);
+        Todo deletedToDo = todoList.delete(toDoId);
+        todoListRepo.save(todoList);
+        return deletedToDo;
     }
 }

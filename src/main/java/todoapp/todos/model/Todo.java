@@ -1,9 +1,12 @@
 package todoapp.todos.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
-public class Todo implements NamedEntity {
+public class Todo implements NamedEntity, Comparable<Todo> {
 
 	@Id
 	@GeneratedValue
@@ -18,7 +21,8 @@ public class Todo implements NamedEntity {
 	// For Hibernate
 	private Todo() {}
 
-	public Todo(String name, int priority) {
+	@JsonCreator
+	public Todo(@JsonProperty("name") String name, @JsonProperty("priority") int priority) {
 		this.name = name;
 		this.priority = priority;
 	}
@@ -31,5 +35,10 @@ public class Todo implements NamedEntity {
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public int compareTo(Todo theOtherTodo) {
+		return this.priority - theOtherTodo.priority;
 	}
 }
