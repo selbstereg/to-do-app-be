@@ -40,6 +40,11 @@ public class TodoListController {
         return todoService.getTodos(toDoListId);
     }
 
+    @PostMapping()
+    public TodoList addToDoList(@RequestBody String listName) {
+        return todoService.createTodoList(listName);
+    }
+
     @PostMapping(path = "/{toDoListId}")
     public Todo addTodo(@PathVariable Long toDoListId, @RequestBody Todo todo) throws TodoListNotFoundException {
         return todoService.addTodo(toDoListId, todo);
