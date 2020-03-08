@@ -20,7 +20,11 @@ public class TodoApp {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry
 						.addMapping("/api/**")
-						.allowedOrigins("http://localhost:4200", "http://localhost:8080", "https://selbstereg.github.io")
+						.allowedOrigins(
+								"http://localhost:4200",
+								"http://localhost:8080",
+								"https://selbstereg.github.io",
+								"https://selbstereg-todo-app-frontend.herokuapp.com/")
 						.allowedMethods("GET", "POST", "PUT", "DELETE");
 			}
 		};
