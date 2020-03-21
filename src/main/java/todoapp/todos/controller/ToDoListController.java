@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import todoapp.todos.model.Todo;
-import todoapp.todos.model.TodoList;
-import todoapp.todos.service.TodoListCrudService;
-import todoapp.todos.service.exceptions.TodoListNotFoundException;
+import todoapp.todos.model.ToDo;
+import todoapp.todos.model.ToDoList;
+import todoapp.todos.service.ToDoListCrudService;
+import todoapp.todos.service.exceptions.ToDoListNotFoundException;
 import todoapp.todos.service.exceptions.TodoNotFoundException;
 
 import java.util.List;
@@ -16,52 +16,52 @@ import static todoapp.todos.controller.Constants.REST_API_BASE_URL;
 
 @RestController
 @RequestMapping(REST_API_BASE_URL + "/to-do-lists")
-public class TodoListController {
+public class ToDoListController {
 
-    private final TodoListCrudService todoService;
+    private final ToDoListCrudService todoService;
 
     @Autowired
-    public TodoListController(TodoListCrudService todoService) {
+    public ToDoListController(ToDoListCrudService todoService) {
         this.todoService = todoService;
     }
 
     @GetMapping()
-    public List<TodoList> getTodoLists() {
+    public List<ToDoList> getTodoLists() {
         return todoService.getTodoLists();
     }
 
     @GetMapping(path = "/{id}")
-    public TodoList getTodoList(@PathVariable Long id) throws TodoListNotFoundException {
+    public ToDoList getTodoList(@PathVariable Long id) throws ToDoListNotFoundException {
         return todoService.getTodoList(id);
     }
 
     @GetMapping(path = "/{toDoListId}/to-dos")
-    public List<Todo> getTodos(@PathVariable Long toDoListId) throws TodoListNotFoundException {
-        return todoService.getTodos(toDoListId);
+    public List<ToDo> getTodos(@PathVariable Long toDoListId) throws ToDoListNotFoundException {
+        return todoService.getToDos(toDoListId);
     }
 
     @PostMapping()
-    public TodoList addToDoList(@RequestBody String listName) {
+    public ToDoList addToDoList(@RequestBody String listName) {
         return todoService.createTodoList(listName);
     }
 
     @PostMapping(path = "/{toDoListId}")
-    public Todo addTodo(@PathVariable Long toDoListId, @RequestBody Todo todo) throws TodoListNotFoundException {
+    public ToDo addTodo(@PathVariable Long toDoListId, @RequestBody ToDo todo) throws ToDoListNotFoundException {
         return todoService.addTodo(toDoListId, todo);
     }
 
     // TODO: Rename Todo -> ToDo
     @DeleteMapping(path = "/{toDoListId}")
-    public TodoList deleteToDoList(@PathVariable("toDoListId") Long toDoListId) throws TodoListNotFoundException {
+    public ToDoList deleteToDoList(@PathVariable("toDoListId") Long toDoListId) throws ToDoListNotFoundException {
         return todoService.deleteToDoList(toDoListId);
     }
 
     @DeleteMapping(path = "/{toDoListId}/to-dos/{toDoId}")
-    public Todo deleteTodo(@PathVariable("toDoListId") Long toDoListId, @PathVariable("toDoId") Long toDoId) throws TodoListNotFoundException, TodoNotFoundException {
-        return todoService.deleteTodo(toDoListId, toDoId);
+    public ToDo deleteTodo(@PathVariable("toDoListId") Long toDoListId, @PathVariable("toDoId") Long toDoId) throws ToDoListNotFoundException, TodoNotFoundException {
+        return todoService.deleteToDo(toDoListId, toDoId);
     }
 
-    @ExceptionHandler({ TodoListNotFoundException.class, TodoNotFoundException.class })
+    @ExceptionHandler({ ToDoListNotFoundException.class, TodoNotFoundException.class })
     public ResponseEntity<String> handle(Exception exception) {
         System.out.println("Handling exception: " + exception.getMessage());
         return new ResponseEntity<String>(exception.getMessage(), HttpStatus.NOT_FOUND);

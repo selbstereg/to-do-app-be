@@ -7,10 +7,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class TodoApp {
+public class ToDoApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TodoApp.class, args);
+		SpringApplication.run(ToDoApp.class, args);
 	}
 
 	@Bean

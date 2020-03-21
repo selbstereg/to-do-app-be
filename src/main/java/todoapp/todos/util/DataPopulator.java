@@ -4,33 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import todoapp.todos.model.Todo;
-import todoapp.todos.model.TodoList;
-import todoapp.todos.repo.TodoListRepo;
-import todoapp.todos.repo.TodoRepo;
+import todoapp.todos.model.ToDo;
+import todoapp.todos.model.ToDoList;
+import todoapp.todos.repo.ToDoListRepo;
+import todoapp.todos.repo.ToDoRepo;
 
 @Component
 public class DataPopulator {
 
-	private TodoRepo todoRepo;
-	private TodoListRepo todoListRepo;
+	private ToDoRepo toDoRepo;
+	private ToDoListRepo toDoListRepo;
 
 	@Autowired
-	public DataPopulator(TodoRepo todoRepo, TodoListRepo todoListRepo) {
-		this.todoRepo = todoRepo;
-		this.todoListRepo = todoListRepo;
+	public DataPopulator(ToDoRepo toDoRepo, ToDoListRepo toDoListRepo) {
+		this.toDoRepo = toDoRepo;
+		this.toDoListRepo = toDoListRepo;
 	}
 	
 	@EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
-		Todo todo1 = new Todo("Botaufstrich", 0);
-		Todo todo2 = new Todo("Brot", 2);
-		Todo todo3 = new Todo("Milch", 1);
-		TodoList todoList = new TodoList("Einkaufsliste");
-		todoList.add(todo1);
-		todoList.add(todo2);
-		todoList.add(todo3);
-		todoListRepo.save(todoList);
+		ToDo toDo1 = new ToDo("Botaufstrich", 0);
+		ToDo toDo2 = new ToDo("Brot", 2);
+		ToDo toDo3 = new ToDo("Milch", 1);
+		ToDoList toDoList = new ToDoList("Einkaufsliste");
+		toDoList.add(toDo1);
+		toDoList.add(toDo2);
+		toDoList.add(toDo3);
+		toDoListRepo.save(toDoList);
     }
 	
 }

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
-public class Todo implements NamedEntity, Comparable<Todo> {
+public class ToDo implements NamedEntity, Comparable<ToDo> {
 
 	@Id
 	@GeneratedValue
@@ -19,10 +19,10 @@ public class Todo implements NamedEntity, Comparable<Todo> {
 	private int priority;
 
 	// For Hibernate
-	private Todo() {}
+	private ToDo() {}
 
 	@JsonCreator
-	public Todo(@JsonProperty("name") String name, @JsonProperty("priority") int priority) {
+	public ToDo(@JsonProperty("name") String name, @JsonProperty("priority") int priority) {
 		this.name = name;
 		this.priority = priority;
 	}
@@ -38,7 +38,7 @@ public class Todo implements NamedEntity, Comparable<Todo> {
 	}
 
 	@Override
-	public int compareTo(Todo theOtherTodo) {
-		return this.priority - theOtherTodo.priority;
+	public int compareTo(ToDo theOtherToDo) {
+		return this.priority - theOtherToDo.priority;
 	}
 }

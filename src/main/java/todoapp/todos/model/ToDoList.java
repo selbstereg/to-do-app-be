@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
-public class TodoList implements NamedEntity {
+public class ToDoList implements NamedEntity {
 
     @Id
     @GeneratedValue
@@ -17,21 +17,21 @@ public class TodoList implements NamedEntity {
     private String name;
 
     @OneToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
-    private Set<Todo> todos = new HashSet<Todo>();
+    private Set<ToDo> toDos = new HashSet<ToDo>();
 
     // For Hibernate
-    private TodoList() {}
+    private ToDoList() {}
 
-    public TodoList(String name) {
+    public ToDoList(String name) {
         this.name = name;
     }
 
-    public void add(Todo todo) {
-        this.todos.add(todo);
+    public void add(ToDo todo) {
+        this.toDos.add(todo);
     }
 
-    public Set<Todo> getTodos() {
-        return todos;
+    public Set<ToDo> getToDos() {
+        return toDos;
     }
 
     @Override
@@ -44,20 +44,20 @@ public class TodoList implements NamedEntity {
         return name;
     }
 
-    public List<Todo> getTodosSortedByPriority() {
-        List<Todo> sortedTodos = new ArrayList<>(todos);
-        Collections.sort(sortedTodos);
-        return sortedTodos;
+    public List<ToDo> getTodosSortedByPriority() {
+        List<ToDo> sortedToDos = new ArrayList<>(toDos);
+        Collections.sort(sortedToDos);
+        return sortedToDos;
     }
 
-    public Todo delete(Long toDoId) throws TodoNotFoundException {
-        Todo toDoToDelete = findToDo(toDoId);
-        todos.remove(toDoToDelete);
+    public ToDo delete(Long toDoId) throws TodoNotFoundException {
+        ToDo toDoToDelete = findToDo(toDoId);
+        toDos.remove(toDoToDelete);
         return toDoToDelete;
     }
 
-    private Todo findToDo(Long toDoId) throws TodoNotFoundException {
-        List<Todo> filteredToDos = todos
+    private ToDo findToDo(Long toDoId) throws TodoNotFoundException {
+        List<ToDo> filteredToDos = toDos
                             .stream()
                             .filter(toDo -> toDo.getId() == toDoId)
                             .collect(Collectors.toList());
