@@ -25,7 +25,7 @@ public class DataPopulator {
     public void onApplicationEvent(ContextRefreshedEvent event) {
 		ToDo toDo1 = new ToDo("Botaufstrich", 0);
 		ToDo toDo2 = new ToDo("Brot", 2);
-		ToDo toDo3 = new ToDo("Milch", 1);
+		ToDo toDo3 = new ToDo("Bananen", 1);
 		ToDoList toDoList = new ToDoList("Einkaufsliste");
 		toDoList.add(toDo1);
 		toDoList.add(toDo2);
