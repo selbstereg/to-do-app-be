@@ -50,6 +50,12 @@ public class TodoListController {
         return todoService.addTodo(toDoListId, todo);
     }
 
+    // TODO: Rename Todo -> ToDo
+    @DeleteMapping(path = "/{toDoListId}")
+    public TodoList deleteToDoList(@PathVariable("toDoListId") Long toDoListId) throws TodoListNotFoundException {
+        return todoService.deleteToDoList(toDoListId);
+    }
+
     @DeleteMapping(path = "/{toDoListId}/to-dos/{toDoId}")
     public Todo deleteTodo(@PathVariable("toDoListId") Long toDoListId, @PathVariable("toDoId") Long toDoId) throws TodoListNotFoundException, TodoNotFoundException {
         return todoService.deleteTodo(toDoListId, toDoId);

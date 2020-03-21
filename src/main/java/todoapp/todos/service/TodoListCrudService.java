@@ -10,14 +10,17 @@ import java.util.List;
 public interface TodoListCrudService {
 
     // Create
-    public TodoList createTodoList(String name);
+    TodoList createTodoList(String name);
 
     // Read
-    public List<TodoList> getTodoLists();
-    public TodoList getTodoList(Long id) throws TodoListNotFoundException;
-    public List<Todo> getTodos(Long toDoListId) throws TodoListNotFoundException;
+    List<TodoList> getTodoLists();
+    TodoList getTodoList(Long id) throws TodoListNotFoundException;
+    List<Todo> getTodos(Long toDoListId) throws TodoListNotFoundException;
 
     // Update
-    public Todo addTodo(Long todoListId, Todo todo) throws TodoListNotFoundException;
-    public Todo deleteTodo(Long toDoListId, Long toDoId) throws TodoListNotFoundException, TodoNotFoundException;
+    Todo addTodo(Long todoListId, Todo todo) throws TodoListNotFoundException;
+
+    // Delete
+    Todo deleteTodo(Long toDoListId, Long toDoId) throws TodoListNotFoundException, TodoNotFoundException;
+    TodoList deleteToDoList(Long toDoListId) throws TodoListNotFoundException;
 }
