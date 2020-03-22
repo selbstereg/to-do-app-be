@@ -1,6 +1,7 @@
 package todoapp.todos.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import todoapp.todos.repo.ToDoListRepo;
 import todoapp.todos.repo.ToDoRepo;
 
 @Component
+@Profile("dev")
 public class DataPopulator {
 
 	private ToDoRepo toDoRepo;
