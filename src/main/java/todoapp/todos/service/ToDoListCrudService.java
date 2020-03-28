@@ -14,13 +14,13 @@ public interface ToDoListCrudService {
 
     // Read
     List<ToDoList> getTodoLists();
-    ToDoList getTodoList(Long id) throws ToDoListNotFoundException;
-    List<ToDo> getToDos(Long toDoListId) throws ToDoListNotFoundException;
+    ToDoList getTodoList(long id) throws ToDoListNotFoundException;
+    List<ToDo> getToDos(long toDoListId) throws ToDoListNotFoundException;
 
     // Update
-    ToDo addTodo(Long toDoListId, ToDo todo) throws ToDoListNotFoundException;
+    ToDo addTodo(long toDoListId, ToDo todo) throws ToDoListNotFoundException;
 
     // Delete
-    ToDo deleteToDo(Long toDoListId, Long toDoId) throws ToDoListNotFoundException, TodoNotFoundException;
-    ToDoList deleteToDoList(Long toDoListId) throws ToDoListNotFoundException;
+    ToDo deleteToDo(long toDoListId, long toDoId) throws ToDoListNotFoundException, TodoNotFoundException;
+    ToDoList deleteToDoList(long toDoListId) throws ToDoListNotFoundException;
 }

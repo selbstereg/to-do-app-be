@@ -32,7 +32,7 @@ public class ToDoListCrudServiceImpl implements ToDoListCrudService {
     }
 
     @Override
-    public ToDoList getTodoList(Long id) throws ToDoListNotFoundException {
+    public ToDoList getTodoList(long id) throws ToDoListNotFoundException {
         ToDoList toDoList = toDoListRepo.findById(id).orElseThrow(
                 () -> new ToDoListNotFoundException(id)
         );
@@ -40,7 +40,7 @@ public class ToDoListCrudServiceImpl implements ToDoListCrudService {
     }
 
     @Override
-    public ToDo addTodo(Long toDoListId, ToDo todo) throws ToDoListNotFoundException {
+    public ToDo addTodo(long toDoListId, ToDo todo) throws ToDoListNotFoundException {
         ToDoList toDoList = getTodoList(toDoListId);
         toDoList.add(todo);
         toDoListRepo.save(toDoList);
@@ -48,13 +48,13 @@ public class ToDoListCrudServiceImpl implements ToDoListCrudService {
     }
 
     @Override
-    public List<ToDo> getToDos(Long toDoListId) throws ToDoListNotFoundException {
+    public List<ToDo> getToDos(long toDoListId) throws ToDoListNotFoundException {
         ToDoList toDoList = getTodoList(toDoListId);
         return toDoList.getTodosSortedByPriority();
     }
 
     @Override
-    public ToDo deleteToDo(Long toDoListId, Long toDoId) throws ToDoListNotFoundException, TodoNotFoundException {
+    public ToDo deleteToDo(long toDoListId, long toDoId) throws ToDoListNotFoundException, TodoNotFoundException {
         ToDoList toDoList = getTodoList(toDoListId);
         ToDo deletedToDo = toDoList.delete(toDoId);
         toDoListRepo.save(toDoList);
@@ -62,7 +62,7 @@ public class ToDoListCrudServiceImpl implements ToDoListCrudService {
     }
 
     @Override
-    public ToDoList deleteToDoList(Long toDoListId) throws ToDoListNotFoundException {
+    public ToDoList deleteToDoList(long toDoListId) throws ToDoListNotFoundException {
         ToDoList toDoList = getTodoList(toDoListId);
         toDoListRepo.delete(toDoList);
         return toDoList;

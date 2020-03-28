@@ -31,12 +31,12 @@ public class ToDoListController {
     }
 
     @GetMapping(path = "/{id}")
-    public ToDoList getTodoList(@PathVariable Long id) throws ToDoListNotFoundException {
+    public ToDoList getTodoList(@PathVariable long id) throws ToDoListNotFoundException {
         return todoService.getTodoList(id);
     }
 
     @GetMapping(path = "/{toDoListId}/to-dos")
-    public List<ToDo> getTodos(@PathVariable Long toDoListId) throws ToDoListNotFoundException {
+    public List<ToDo> getTodos(@PathVariable long toDoListId) throws ToDoListNotFoundException {
         return todoService.getToDos(toDoListId);
     }
 
@@ -46,18 +46,18 @@ public class ToDoListController {
     }
 
     @PostMapping(path = "/{toDoListId}")
-    public ToDo addTodo(@PathVariable Long toDoListId, @RequestBody ToDo todo) throws ToDoListNotFoundException {
+    public ToDo addTodo(@PathVariable long toDoListId, @RequestBody ToDo todo) throws ToDoListNotFoundException {
         return todoService.addTodo(toDoListId, todo);
     }
 
     // TODO: Rename Todo -> ToDo
     @DeleteMapping(path = "/{toDoListId}")
-    public ToDoList deleteToDoList(@PathVariable("toDoListId") Long toDoListId) throws ToDoListNotFoundException {
+    public ToDoList deleteToDoList(@PathVariable("toDoListId") long toDoListId) throws ToDoListNotFoundException {
         return todoService.deleteToDoList(toDoListId);
     }
 
     @DeleteMapping(path = "/{toDoListId}/to-dos/{toDoId}")
-    public ToDo deleteTodo(@PathVariable("toDoListId") Long toDoListId, @PathVariable("toDoId") Long toDoId) throws ToDoListNotFoundException, TodoNotFoundException {
+    public ToDo deleteTodo(@PathVariable("toDoListId") long toDoListId, @PathVariable("toDoId") long toDoId) throws ToDoListNotFoundException, TodoNotFoundException {
         return todoService.deleteToDo(toDoListId, toDoId);
     }
 

@@ -50,13 +50,13 @@ public class ToDoList implements NamedEntity {
         return sortedToDos;
     }
 
-    public ToDo delete(Long toDoId) throws TodoNotFoundException {
+    public ToDo delete(long toDoId) throws TodoNotFoundException {
         ToDo toDoToDelete = findToDo(toDoId);
         toDos.remove(toDoToDelete);
         return toDoToDelete;
     }
 
-    private ToDo findToDo(Long toDoId) throws TodoNotFoundException {
+    private ToDo findToDo(long toDoId) throws TodoNotFoundException {
         List<ToDo> filteredToDos = toDos
                             .stream()
                             .filter(toDo -> toDo.getId() == toDoId)
