@@ -4,7 +4,6 @@ import todoapp.todos.service.exceptions.TodoNotFoundException;
 
 import javax.persistence.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 public class ToDoList implements NamedEntity {
@@ -57,13 +56,17 @@ public class ToDoList implements NamedEntity {
     }
 
     private ToDo findToDo(long toDoId) throws TodoNotFoundException {
-        List<ToDo> filteredToDos = toDos
-                            .stream()
-                            .filter(toDo -> toDo.getId() == toDoId)
-                            .collect(Collectors.toList());
-        if (filteredToDos.size() == 0) {
+        ToDo toDoToReturn = null;
+        for (ToDo toDo : toDos) {
+            if (toDo.getId().equals(toDoId)) {
+                toDoToReturn = toDo;
+                break;
+            }
+        }
+
+        if (toDoToReturn == null) {
             throw new TodoNotFoundException(toDoId);
         }
-        return filteredToDos.get(0);
+        return toDoToReturn;
     }
 }
