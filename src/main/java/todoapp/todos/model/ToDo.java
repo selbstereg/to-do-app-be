@@ -37,6 +37,8 @@ public class ToDo implements NamedEntity, Comparable<ToDo> {
 		return name;
 	}
 
+	public int getPriority() { return priority; }
+
 	@Override
 	public int compareTo(ToDo theOtherToDo) {
 		return this.priority - theOtherToDo.priority;
