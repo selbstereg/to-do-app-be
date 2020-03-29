@@ -15,7 +15,7 @@ public class ToDoList implements NamedEntity {
     @Column(nullable=false)
     private String name;
 
-    @OneToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
     private Set<ToDo> toDos = new HashSet<ToDo>();
 
     // For Hibernate
