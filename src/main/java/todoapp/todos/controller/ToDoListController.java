@@ -61,6 +61,7 @@ public class ToDoListController {
         return toDoListService.deleteToDo(toDoListId, toDoId);
     }
 
+    // TODO: Move this to a controller advice because of duplication with ToDoController
     @ExceptionHandler({ ToDoListNotFoundException.class, TodoNotFoundException.class })
     public ResponseEntity<String> handle(Exception exception) {
         System.out.println("Handling exception: " + exception.getMessage());
